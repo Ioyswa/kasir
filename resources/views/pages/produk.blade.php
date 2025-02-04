@@ -14,12 +14,14 @@
                     <h6 class="m-0 font-weight-bold text-primary text-center">Data Produk</h6>
                     <a href="" class="btn btn-success" data-toggle="modal" data-target="#tambah">Tambah</a>
                 </div>
+                
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered text-center" id="dataTables" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Gambar</th>
                                     <th>Produk</th>
                                     <th>Harga</th>
                                     <th>Stok</th>
@@ -31,6 +33,7 @@
                                 @foreach ($produks as $produk)
                                     <tr>
                                         <td>{{ $i++ }}</td>
+                                        <td><img class="w-50 h-50" src="{{ asset($produk->image)}}" alt="gambar_produk"></td>
                                         <td>{{ $produk->nama_produk }}</td>
                                         <td>Rp. {{ $produk->harga }}</td>
                                         <td>{{ $produk->stok }}</td>
@@ -78,6 +81,12 @@
                             <div class="form-group">
                                 <label for="nama_produk">Nama Produk</label>
                                 <input type="text" name="nama_produk"  class="form-control"
+                                    placeholder="Nama Produk" required>
+                            </div>
+                            <div class="form-group">
+                                <img id="imagePreview" class="image-preview w-25" src="#" alt="Preview Gambar" style="display: none;">
+                                <label for="image">Gambar Produk</label>
+                                <input type="file" name="image"  class="form-control" id="imageInput" accept="image/jpg, image/png, image/jpeg "
                                     placeholder="Nama Produk" required>
                             </div>
                             <div class="form-group">
@@ -159,6 +168,22 @@
                     $('#harga').val(harga);
                     $('#stok').val(stok);
                 });
+            });
+        </script>
+        <script>
+            const imageInput = document.getElementById('imageInput');
+            const imagePreview = document.getElementById('imagePreview');
+
+            imageInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreview.src = e.target.result;
+                        imagePreview.style.display = 'block';
+                    }
+                    reader.readAsDataURL(file);
+                }
             });
         </script>
 

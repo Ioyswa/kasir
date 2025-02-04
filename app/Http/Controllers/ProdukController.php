@@ -24,12 +24,21 @@ class ProdukController extends Controller
             'nama_produk' => 'required',
             'harga' => 'required',
             'stok' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg|max:4048'
         ]);
+        // dd($request['image']);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagePath = $image->store('gambar_produk', 'public');
+            // dd($image, $imagePath);
+        }
 
         Produk::create([
             'nama_produk' => $request->nama_produk,
             'harga' => $request->harga,
-           'stok' => $request->stok,
+            'stok' => $request->stok,
+            'image' => 'storage/' . $imagePath
         ]);
 
         return redirect()->route('produk')->with('success', 'Produk berhasil ditambahkan!');
