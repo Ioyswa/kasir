@@ -1,8 +1,8 @@
 <!-- Footer -->
-<footer class="sticky-footer bg-white">
+<footer class="sticky-footer bg-dark">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span> &copy;fwr</span>
+            <span class="text-white"> &copy;fwr</span>
         </div>
     </div>
 </footer>

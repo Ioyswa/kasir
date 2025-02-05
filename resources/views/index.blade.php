@@ -3,32 +3,39 @@
 
 @section('content')
     <x-dynamic-content>
-        @switch($aktivitas)
-            @case('register')
-                @include('pages.register')
-            @break
+        <div class="text-white">
+            @switch($aktivitas)
+                @case('login')
+                    @include('auth.login')
+                @break
 
-            @case('dashboard')
-                @include('pages.dashboard')
-            @break
+                @case('register')
+                    @include('auth.register')
+                @break
 
-            @case('produk')
-                @include('pages.produk')
-            @break
+                @case('dashboard')
+                    @include('pages.dashboard')
+                @break
 
-            @case('pelanggan')
-                @include('pages.pelanggan')
-            @break
+                @case('produk')
+                    @include('pages.produk')
+                @break
 
-            @case('penjualan')
-                @include('pages.penjualan')
-            @break
+                @case('pelanggan')
+                    @include('pages.pelanggan')
+                @break
 
-            @case('kasir')
-                @include('pages.kasir')
-            @break
-            @default
-                @include('pages.dashboard')
-        @endswitch
+                @case('penjualan')
+                    @include('pages.penjualan')
+                @break
+
+                @case('kasir')
+                    @include('pages.kasir')
+                @break
+
+                @default
+                    @include('pages.dashboard')
+            @endswitch
+        </div>
     </x-dynamic-content>
 @endsection

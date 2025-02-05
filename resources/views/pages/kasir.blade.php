@@ -149,7 +149,7 @@
 
                 // Event listener saat spasi ditekan di input jumlah
                 jumlahInput.addEventListener('keydown', function(event) {
-                    event.preventDefault(); // Mencegah karakter spasi ditambahkan ke input
+                    // event.preventDefault(); // Mencegah karakter spasi ditambahkan ke input
                     if (event.key === ' ') {
 
                         // Ambil data produk yang dipilih

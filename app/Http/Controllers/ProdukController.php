@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 
@@ -50,12 +51,39 @@ class ProdukController extends Controller
             'nama_produk' => 'required',
             'harga' => 'required|numeric',
             'stok' => 'required|integer',
+            'image' => 'image|mimes:jpeg,png,jpg|max:4048'
         ]);
 
         $id_produk = $request->id_produk;
-
         $produk = Produk::findOrFail($id_produk);
+        // dd($produk->image);
 
+        if ($request->hasFile('image')) {
+            if ($produk->image) {
+                // Menghapus 'storage/' dari path gambar yang ada
+                $oldImagePath = str_replace('storage/', '', $produk->image);
+
+                // dd(Storage::allFiles('public/gambar_produk'));
+                // dd(Storage::exists('app'),'public/storage/' . $oldImagePath);
+
+                // dd($oldImagePath, 'public/' . $oldImagePath);
+
+                // Cek apakah file ada sebelum dihapus
+                if (storage_path('app/public/' . $oldImagePath)) {
+                    // Hapus file
+                    Storage::delete(storage_path('app/public/' . $oldImagePath)); // Ini akan mengembalikan true jika berhasil
+                } else {
+                    dd('File tidak ditemukan: public/' . $oldImagePath);
+                }
+            }
+
+            // Simpan
+            $image = $request->file('image');
+            $imagePath = $image->store('gambar_produk', 'public');
+            $produk->image = 'storage/' . $imagePath;
+        }
+
+        // Update data produk lainnya
         $produk->nama_produk = $request->nama_produk;
         $produk->harga = $request->harga;
         $produk->stok = $request->stok;
