@@ -35,28 +35,31 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-    {
-        try {
-            $request->validate([
-                'username' => 'required',
-                'password' => 'required'
-            ]);
+{
+    try {
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
 
-            // Gunakan guard 'operator' untuk autentikasi
-            if (Auth::guard('operator')->attempt(['username' => $request->username, 'password' => $request->password])) {
-                $user = Auth::user();
-                \Log::info('User  role: ' . $user->role); // Log role pengguna
-
+        // Gunakan guard 'operator' untuk autentikasi
+        if (Auth::guard('operator')->attempt(['username' => $request->username, 'password' => $request->password])) {
+            // Dapatkan pengguna yang terautentikasi dari guard 'operator'
+            $user = Auth::guard('operator')->user();
+            // dd($user);
+            // Pastikan $user tidak null sebelum mengakses role
+            if ($user) {
                 return redirect()->route('dashboard');
             }
-
-            return back()->withErrors([
-                'username' => 'Username atau password salah.',
-            ]);
-        } catch (Exception $e) {
-            dd($e);
         }
+
+        return back()->withErrors([
+            'username' => 'Username atau password salah.',
+        ]);
+    } catch (Exception $e) {
+        dd($e);
     }
+}
 
     public function logout()
     {

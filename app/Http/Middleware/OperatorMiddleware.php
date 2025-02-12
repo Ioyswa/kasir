@@ -16,13 +16,14 @@ class OperatorMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-            \Log::info('User  role: ' . $user->role); // Log role pengguna
-        }
-        // Periksa apakah pengguna terautentikasi dan memiliki role 'operator'
-        if (Auth::check() && Auth::user()->role === 'operator') {
-            // return $next($request);
+        // Periksa apakah pengguna terautentikasi dengan guard 'operator'
+        if (Auth::guard('operator')->check()) {
+            $user = Auth::guard('operator')->user();
+
+            // Periksa apakah pengguna memiliki role 'operator'
+            if ($user->role === 'operator') {
+                return $next($request); // Lanjutkan ke permintaan berikutnya
+            }
         }
 
         return redirect()->route('login')->with('error', 'Anda tidak memiliki akses ke halaman ini.');

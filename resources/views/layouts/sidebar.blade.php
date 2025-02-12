@@ -41,6 +41,7 @@
                 <a class="collapse-item" href="/pelanggan">Pelanggan</a>
                 <a class="collapse-item" href="/penjualan">Penjualan</a>
                 <a class="collapse-item" href="/kasir">Kasir</a>
+                <a class="collapse-item" href="/cabang">Cabang</a>
             </div>
         </div>
     </li>

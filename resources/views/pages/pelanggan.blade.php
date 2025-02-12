@@ -62,7 +62,7 @@
         </div>
         <!-- Modal Tambah -->
         <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="tambah" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog text-dark" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Tambah Pelanggan</h5>
@@ -70,7 +70,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body text-dark">
                         <form class="user" action="{{ route('pelanggan.tambah') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
@@ -102,7 +102,7 @@
 
         <!-- Modal Edit -->
         <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog text-dark" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Edit Produk</h5>
@@ -110,7 +110,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body text-dark">
                         <form class="user" action="{{ route('pelanggan.update') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
@@ -118,22 +118,22 @@
                             <div class="form-group">
                                 <input type="hidden" name="id_pelanggan" id="id_pelanggan" class="form-control">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group text-dark">
                                 <label for="nama_pelanggan">Nama Pelanggan</label>
                                 <input type="text" name="nama_pelanggan" id="nama_pelanggan" class="form-control"
                                     placeholder="Nama Pelanggan" required>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group text-dark">
                                 <label for="alamat">Alamat Pelanggan</label>
                                 <input type="text" name="alamat" id="alamat" class="form-control"
                                     placeholder="Alamat" required>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group text-dark">
                                 <label for="nomor_telepon">Nomor Telepon</label>
                                 <input type="number" name="nomor_telepon" id="nomor" class="form-control"
                                     placeholder="Nomor Telepon" required>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer text-dark">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-primary">Update Pelanggan</button>
                             </div>

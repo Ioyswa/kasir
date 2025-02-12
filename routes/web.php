@@ -9,6 +9,7 @@ use App\Http\Controllers\KasirController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Middleware\OperatorMiddleware as auth;
 
+
 Route::get('/', [dashboard::class, 'index'])->name('dashboard')->middleware(auth::class);
 Route::get('/produk', [ProdukController::class, 'index'])->name('produk')->middleware(auth::class);;
 Route::post('/produk/tambah', [ProdukController::class, 'upload'])->name('produk.tambah')->middleware(auth::class);;

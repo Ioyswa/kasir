@@ -64,17 +64,16 @@ return [
     */
 
         'providers' => [
+            'users' => [
+                'driver' => 'eloquent',
+                'model' => App\Models\User::class,
+            ],
+
             'operators' => [
                 'driver' => 'eloquent',
                 'model' => App\Models\Operator::class,
             ],
-
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
-    ],
+        ],
 
     /*
     |--------------------------------------------------------------------------

@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header text-dark">
                             <div class="alert alert-info">
                                 Tip: Tekan <kbd>SPASI</kbd> untuk menambahkan produk ke daftar
                             </div>
@@ -16,7 +16,7 @@
                             <form id="checkout-form" action="{{ route('penjualan.store') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="order_items" id="order-items-input">
-                                <div class="row">
+                                <div class="row text-dark">
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
                                             <label>Pilih Pelanggan</label>
@@ -62,7 +62,7 @@
                                     </div>
                                 </div>
 
-                                <div class="card mb-3">
+                                <div class="card mb-3 text-dark">
                                     <div class="card-header">
                                         Detail Pesanan
                                     </div>
@@ -84,7 +84,7 @@
                                     </div>
                                 </div>
 
-                                <div class="card mb-3">
+                                <div class="card mb-3 text-dark">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6">
