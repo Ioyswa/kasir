@@ -10,20 +10,24 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('auth.login');
     }
 
-    public function register() {
+    public function register()
+    {
         return view('auth.register');
     }
 
-    public function upload(Request $request) {
+    public function upload(Request $request)
+    {
         // Validasi input
         $request->validate([
             'username' => 'required|string|max:255|unique:operator',
             'password' => 'required|string|min:8', // Pastikan ada konfirmasi password
         ]);
+
 
         // Buat pengguna baru
         $operator = new Operator();
@@ -35,37 +39,41 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-{
-    try {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required'
-        ]);
+    {
+        try {
+            $request->validate([
+                'username' => 'required',
+                'password' => 'required'
+            ]);
 
-        // Gunakan guard 'operator' untuk autentikasi
-        if (Auth::guard('operator')->attempt(['username' => $request->username, 'password' => $request->password])) {
-            // Dapatkan pengguna yang terautentikasi dari guard 'operator'
-            $user = Auth::guard('operator')->user();
-            // dd($user);
-            // Pastikan $user tidak null sebelum mengakses role
-            if ($user) {
-                return redirect()->route('dashboard');
+
+
+            // Cek autentikasi untuk guard 'operator'
+            if (Auth::guard('operator')->attempt(['username' => $request->username, 'password' => $request->password])) {
+                // dd("anjay opertaro");
+                // dd(Auth::check()); // Ini harus mengembalikan false
+                return redirect()->route('kasir');
             }
-        }
 
-        return back()->withErrors([
-            'username' => 'Username atau password salah.',
-        ]);
-    } catch (Exception $e) {
-        dd($e);
+            // Cek autentikasi untuk guard 'admin'
+            if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password])) {
+                // dd("anjay admon");
+                // dd(); // Ini harus mengembalikan false
+                return redirect()->route('produk');
+            }
+
+            return back()->withErrors([
+                'username' => 'Username atau password salah.',
+            ]);
+        } catch (Exception $e) {
+            dd($e);
+        }
     }
-}
 
     public function logout()
     {
         Auth::logout();
+        // dd(Auth::check()); // Ini harus mengembalikan false
         return redirect()->route('login')->with('success', 'Anda telah logout.');
     }
-
-
 }

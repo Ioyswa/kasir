@@ -15,6 +15,8 @@ class Kernel extends HttpKernel
     protected $middleware = [
         //...
         \App\Http\Middleware\OperatorMiddleware::class,
+        \App\Http\Middleware\AdminMiddleware::class,
+        \App\Http\Middleware\OperatorOrAdminMiddleware::class,
     ];
 
     /**
@@ -23,6 +25,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'admin' => \App\Http\Middleware\OperatorMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'operator' => \App\Http\Middleware\OperatorMiddleware::class,
+        'operator_or_admin' => \App\Http\Middleware\OperatorOrAdminMiddleware::class,
     ];
 }

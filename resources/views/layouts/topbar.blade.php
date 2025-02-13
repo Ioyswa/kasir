@@ -21,10 +21,15 @@
     </form> --}}
 
      <!-- Topbar Navbar -->
-     <ul class="navbar-nav ml-auto">
+     <ul class="navbar-nav ml-auto text-white">
 
          <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-
+         {{-- {{ dd(Auth::check());}} --}}
+         @if (Auth::guard('admin')->check())
+             <h6>Anda login sebagai Admin</h6>
+         @elseif(Auth::guard('operator')->check())
+             <h6>Anda login sebagai Operator</h6>
+         @endif
          <li class="nav-item dropdown no-arrow d-sm-none">
              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
                  aria-haspopup="true" aria-expanded="false">

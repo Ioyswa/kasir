@@ -34,17 +34,21 @@ return [
     | Supported: "session"
     |
     */
-        'guards' => [
-            'web' => [
-                'driver' => 'session',
-                'provider' => 'users',
-            ],
-
-            'operator' => [
-                'driver' => 'session',
-                'provider' => 'operators',
-            ],
+    'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
         ],
+
+        'operator' => [
+            'driver' => 'session',
+            'provider' => 'operators',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -63,17 +67,23 @@ return [
     |
     */
 
-        'providers' => [
-            'users' => [
-                'driver' => 'eloquent',
-                'model' => App\Models\User::class,
-            ],
-
-            'operators' => [
-                'driver' => 'eloquent',
-                'model' => App\Models\Operator::class,
-            ],
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
         ],
+
+        'operators' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Operator::class,
+        ],
+        'admins' => [ 
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+
+
+    ],
 
     /*
     |--------------------------------------------------------------------------

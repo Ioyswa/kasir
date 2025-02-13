@@ -37,11 +37,20 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Halaman:</h6>
-                <a class="collapse-item" href="/produk">Produk</a>
-                <a class="collapse-item" href="/pelanggan">Pelanggan</a>
-                <a class="collapse-item" href="/penjualan">Penjualan</a>
-                <a class="collapse-item" href="/kasir">Kasir</a>
-                <a class="collapse-item" href="/cabang">Cabang</a>
+
+                @if(Auth::guard('admin')->check())
+                    <!-- Menu untuk Admin -->
+                    <a class="collapse-item" href="/Operator">Operator</a>
+                    <a class="collapse-item" href="/produk">Produk</a>
+                    <a class="collapse-item" href="/pelanggan">Pelanggan</a>
+                    <a class="collapse-item" href="/penjualan">Penjualan</a>
+                    @elseif(Auth::guard('operator')->check())
+                    <!-- Menu untuk Operator -->
+                    <a class="collapse-item" href="/produk">Produk</a>
+                    <a class="collapse-item" href="/penjualan">Penjualan</a>
+                    <a class="collapse-item" href="/kasir">Kasir</a>
+                @endif
+
             </div>
         </div>
     </li>

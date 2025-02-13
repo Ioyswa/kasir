@@ -7,13 +7,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class OperatorMiddleware
+class OperatorOrAdminMiddleware
 {
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::guard('operator')->check()) {
+        if (Auth::guard('admin')->check() || Auth::guard('operator')->check()) {
             return $next($request);
         }
+        dd(Auth::guard('operator')->check());
 
         return redirect()->route('login')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
     }

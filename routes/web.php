@@ -7,27 +7,30 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\PenjualanController;
-use App\Http\Middleware\OperatorMiddleware as auth;
+use App\Http\Middleware\OperatorMiddleware as op;
+use App\Http\Middleware\AdminMiddleware as admin;
+use App\Http\Middleware\OperatorOrAdminMiddleware as atau;
 
 
-Route::get('/', [dashboard::class, 'index'])->name('dashboard')->middleware(auth::class);
-Route::get('/produk', [ProdukController::class, 'index'])->name('produk')->middleware(auth::class);;
-Route::post('/produk/tambah', [ProdukController::class, 'upload'])->name('produk.tambah')->middleware(auth::class);;
-Route::delete('/produk/hapus/{id}', [ProdukController::class, 'delete'])->name('produk.hapus')->middleware(auth::class);;
-Route::put('/produk/update', [ProdukController::class, 'update'])->name('produk.update')->middleware(auth::class);;
+Route::get('/', [dashboard::class, 'index'])->name('dashboard')->middleware(admin::class);
+
+Route::get('/produk', [ProdukController::class, 'index'])->name('produk')->middleware(atau::class);
+Route::post('/produk/tambah', [ProdukController::class, 'upload'])->name('produk.tambah')->middleware(atau::class);
+Route::delete('/produk/hapus/{id}', [ProdukController::class, 'delete'])->name('produk.hapus')->middleware(atau::class);
+Route::put('/produk/update', [ProdukController::class, 'update'])->name('produk.update')->middleware(atau::class);
 
 
-Route::get('/penjualan', [PenjualanController::class, 'index'])->name('penjualan')->middleware(auth::class);;
-Route::post('/penjualan', [PenjualanController::class, 'store'])->name('penjualan.store')->middleware(auth::class);;
-Route::get('/penjualan/{id}', [PenjualanController::class, 'show'])->middleware(auth::class);;
+Route::get('/penjualan', [PenjualanController::class, 'index'])->name('penjualan')->middleware(op::class);;
+Route::post('/penjualan', [PenjualanController::class, 'store'])->name('penjualan.store')->middleware(op::class);;
+Route::get('/penjualan/{id}', [PenjualanController::class, 'show'])->middleware(op::class);;
 
 //pelanggan
-Route::get('/pelanggan', [PelangganController::class, 'index'])->name('pelanggan')->middleware(auth::class);;
-Route::post('/pelanggan/tambah', [PelangganController::class, 'upload'])->name('pelanggan.tambah')->middleware(auth::class);;
-Route::delete('/pelanggan/hapus/{id}', [PelangganController::class, 'delete'])->name('pelanggan.hapus')->middleware(auth::class);;
-Route::put('/pelanggan/update', [PelangganController::class, 'update'])->name('pelanggan.update')->middleware(auth::class);;
+Route::get('/pelanggan', [PelangganController::class, 'index'])->name('pelanggan')->middleware(admin::class);;
+Route::post('/pelanggan/tambah', [PelangganController::class, 'upload'])->name('pelanggan.tambah')->middleware(admin::class);;
+Route::delete('/pelanggan/hapus/{id}', [PelangganController::class, 'delete'])->name('pelanggan.hapus')->middleware(admin::class);;
+Route::put('/pelanggan/update', [PelangganController::class, 'update'])->name('pelanggan.update')->middleware(admin::class);;
 
-Route::get('/kasir', [KasirController::class, 'index'])->name('kasir')->middleware(auth::class);;
+Route::get('/kasir', [KasirController::class, 'index'])->name('kasir')->middleware(op::class);;
 
 
 // Route::get('/pelanggan', [PelangganController::class, 'pelanggan'])->name('pelanggan');

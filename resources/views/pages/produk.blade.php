@@ -67,7 +67,7 @@
 
         </div>
         <!-- Modal Tambah -->
-        <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="tambah" aria-hidden="true">
+        <div class="modal fade text-dark" id="tambah" tabindex="-1" role="dialog" aria-labelledby="tambah" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -113,7 +113,7 @@
         </div>
 
         <!-- Modal Edit -->
-        <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal fade text-dark" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
