@@ -17,6 +17,9 @@
                     @include('pages.dashboard')
                 @break
 
+                @case('operator')
+                    @include('pages.operator')
+                @break
                 @case('produk')
                     @include('pages.produk')
                 @break
@@ -32,6 +35,7 @@
                 @case('kasir')
                     @include('pages.kasir')
                 @break
+
 
                 @default
                     @include('pages.dashboard')

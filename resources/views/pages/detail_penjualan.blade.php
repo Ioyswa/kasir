@@ -3,6 +3,7 @@
 @section('content')
     <x-dynamic-content>
         <div class="container">
+            
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -32,7 +33,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            
+
                             <h5>Total: Rp. {{ number_format($penjualan->total_harga, 0, ',', '.') }}</h5>
                         </div>
                     </div>

@@ -11,8 +11,8 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Pelanggan</h6>
-                    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#tambah">Tambah Pelanggan</a>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Operator</h6>
+                    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#tambah">Tambah Operator</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -21,28 +21,23 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nama</th>
-                                    <th>Alamat</th>
-                                    <th>Nomor Telepon</th>
-                                    <th>Aksi</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <?php $i = 1; ?>
                             <tbody>
-                                @foreach ($pelanggans as $pelanggan)
+                                @foreach ($operators as $operator)
                                     <tr>
                                         <td>{{ $i++ }}</td>
-                                        <td>{{ $pelanggan->nama_pelanggan }}</td>
-                                        <td>{{ $pelanggan->alamat_pelanggan }}</td>
-                                        <td>{{ $pelanggan->nomor_telepon_pelanggan }}</td>
+                                        <td>{{ $operator->username }}</td>
                                         <td>
                                             <a href="#" class="btn btn-sm btn-primary edit-btn" data-toggle="modal"
-                                                data-target="#edit" data-id="{{ $pelanggan->id_pelanggan }}"
-                                                data-nama="{{ $pelanggan->nama_pelanggan }}"
-                                                data-alamat="{{ $pelanggan->alamat_pelanggan }}"
-                                                data-nomor="{{ $pelanggan->nomor_telepon_pelanggan }}">
+                                                data-target="#edit" data-id="{{ $operator->id }}"
+                                                data-username="{{ $operator->username }}"
+                                                data-password="{{ $operator->password }}">
                                                 Edit
                                             </a>
-                                            <form action="{{ route('pelanggan.hapus', $pelanggan->id_pelanggan) }}"
+                                            <form action="{{ route('operator.hapus', $operator->id) }}"
                                                 method="POST" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
@@ -66,33 +61,28 @@
             <div class="modal-dialog text-dark" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Pelanggan</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Operator</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body text-dark">
-                        <form class="user" action="{{ route('pelanggan.tambah') }}" method="POST"
+                        <form class="user" action="{{ route('operator.tambah') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
-                                <label for="nama_pelanggan">Nama Pelanggan</label>
-                                <input type="text" name="nama_pelanggan" class="form-control"
-                                    placeholder="Nama Pelanggan" required>
+                                <label for="username">Username</label>
+                                <input type="text" name="username" class="form-control"
+                                    placeholder="Username" required>
                             </div>
                             <div class="form-group">
-                                <label for="harga">Alamat Pelanggan</label>
-                                <input type="text" name="alamat_pelanggan" class="form-control" placeholder="Alamat" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="stok">NO Telepon Pelanggan</label>
-                                <input type="number" name="nomor_telepon_pelanggan" class="form-control" placeholder="Nomor Telepon"
-                                    required>
+                                <label for="password">Password</label>
+                                <input type="password" name="password" class="form-control" placeholder="Password" required>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Tambah Pelanggan</button>
+                                <button type="submit" class="btn btn-primary">Tambah Operator</button>
                             </div>
                         </form>
                     </div>
@@ -106,37 +96,32 @@
             <div class="modal-dialog text-dark" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Produk</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Operator</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body text-dark">
-                        <form class="user" action="{{ route('pelanggan.update') }}" method="POST"
+                        <form class="user" action="{{ route('operator.update') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <input type="hidden" name="id_pelanggan" id="id_pelanggan" class="form-control">
+                                <input type="hidden" name="id" id="id" class="form-control">
                             </div>
                             <div class="form-group text-dark">
-                                <label for="nama_pelanggan">Nama Pelanggan</label>
-                                <input type="text" name="nama_pelanggan" id="nama_pelanggan" class="form-control"
-                                    placeholder="Nama Pelanggan" required>
+                                <label for="username">Username</label>
+                                <input type="text" name="username" id="username" class="form-control"
+                                    placeholder="Username" required>
                             </div>
                             <div class="form-group text-dark">
-                                <label for="alamat">Alamat Pelanggan</label>
-                                <input type="text" name="alamat_pelanggan" id="alamat" class="form-control"
-                                    placeholder="Alamat" required>
-                            </div>
-                            <div class="form-group text-dark">
-                                <label for="nomor_telepon">Nomor Telepon</label>
-                                <input type="number" name="nomor_telepon_pelanggan" id="nomor" class="form-control"
-                                    placeholder="Nomor Telepon" required>
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" class="form-control"
+                                    placeholder="Password">
                             </div>
                             <div class="modal-footer text-dark">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Update Pelanggan</button>
+                                <button type="submit" class="btn btn-primary">Update Operator</button>
                             </div>
                         </form>
                     </div>
@@ -150,15 +135,12 @@
                 $('.edit-btn').on('click', function() {
 
                     var id = $(this).data('id');
-                    var nama = $(this).data('nama');
-                    var alamat = $(this).data('alamat');
+                    var username = $(this).data('username');
                     var nomor = $(this).data('nomor');
 
 
-                    $('#id_pelanggan').val(id);
-                    $('#nama_pelanggan').val(nama);
-                    $('#alamat').val(alamat);
-                    $('#nomor').val(nomor);
+                    $('#id').val(id);
+                    $('#username').val(username);
                 });
             });
         </script>

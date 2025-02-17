@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Models\Operator;
 use Exception;
@@ -30,10 +31,10 @@ class AuthController extends Controller
 
 
         // Buat pengguna baru
-        $operator = new Operator();
-        $operator->username = $request->username;
-        $operator->password = Hash::make($request->password); // Hash password
-        $operator->save();
+        $Admin = new Admin();
+        $Admin->username = $request->username;
+        $Admin->password = Hash::make($request->password); // Hash password
+        $Admin->save();
 
         return redirect()->route('login')->with('success', 'Pendaftaran berhasil! Silakan login.');
     }
@@ -52,14 +53,14 @@ class AuthController extends Controller
             if (Auth::guard('operator')->attempt(['username' => $request->username, 'password' => $request->password])) {
                 // dd("anjay opertaro");
                 // dd(Auth::check()); // Ini harus mengembalikan false
-                return redirect()->route('kasir');
+                return redirect()->route('kasir')->with('success', 'Selamat Datang ' . $request->username);
             }
 
             // Cek autentikasi untuk guard 'admin'
             if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password])) {
                 // dd("anjay admon");
                 // dd(); // Ini harus mengembalikan false
-                return redirect()->route('produk');
+                return redirect()->route('dashboard')->with('success', 'Selamat Datang '. $request->username);
             }
 
             return back()->withErrors([

@@ -11,9 +11,25 @@
 
 <body class="bg-dark">
     <div class="container mt-5">
+        <div class="container-fluid">
+            @if (session('success'))
+                <div class="alert alert-success text-center">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
+
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
@@ -57,7 +73,7 @@
                             <div class="form-group row mb-0 mt-2">
                                 <div class="offset-md-4 w-auto">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
+                                        {{ __('Register') }}
                                     </button>
                                 </div>
                             </div>

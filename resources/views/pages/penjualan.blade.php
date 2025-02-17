@@ -5,11 +5,10 @@
         <!-- CSS DataTables -->
 
         <div class="container-fluid">
-
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary text-center">Data Penjualan</h6>
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary">Data Penjualan</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -93,19 +92,27 @@
                             modalBody.empty(); // Kosongkan isi modal
 
                             // Tampilkan informasi penjualan
-                            modalBody.append('<p><strong>Pembeli:</strong> ' + data.pelanggan.nama_pelanggan + '</p>');
-                            modalBody.append('<p><strong>Total Harga:</strong> Rp. ' + data.total_harga + '</p>');
-                            modalBody.append('<p><strong>Total Bayar:</strong> Rp. ' + data.total_bayar + '</p>');
-                            modalBody.append('<p><strong>Kembalian:</strong> Rp. ' + data.kembalian + '</p>');
-                            modalBody.append('<p><strong>Tanggal:</strong> ' + data.tanggal_penjualan + '</p>');
+                            modalBody.append('<p><strong>Pembeli:</strong> ' + data.pelanggan
+                                .nama_pelanggan + '</p>');
+                            modalBody.append('<p><strong>Total Harga:</strong> Rp. ' + data
+                                .total_harga + '</p>');
+                            modalBody.append('<p><strong>Total Bayar:</strong> Rp. ' + data
+                                .total_bayar + '</p>');
+                            modalBody.append('<p><strong>Kembalian:</strong> Rp. ' + data
+                                .kembalian + '</p>');
+                            modalBody.append('<p><strong>Tanggal:</strong> ' + data
+                                .tanggal_penjualan + '</p>');
                             modalBody.append('<hr>');
                             modalBody.append('<h5>Detail Produk:</h5>');
 
                             // Loop melalui detail penjualan dan tambahkan ke modal
                             $.each(data.detail_penjualans, function(index, item) {
-                                modalBody.append('<p>Produk: ' + item.produk.nama_produk + '</p>');
-                                modalBody.append('<p>Jumlah: ' + item.jumlah_produk + '</p>');
-                                modalBody.append('<p>Subtotal: Rp. ' + item.subtotal + '</p>');
+                                modalBody.append('<p>Produk: ' + item.produk.nama_produk +
+                                    '</p>');
+                                modalBody.append('<p>Jumlah: ' + item.jumlah_produk +
+                                    '</p>');
+                                modalBody.append('<p>Subtotal: Rp. ' + item.subtotal +
+                                    '</p>');
                                 modalBody.append('<hr>');
                             });
                         },

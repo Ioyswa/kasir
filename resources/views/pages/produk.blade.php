@@ -7,7 +7,6 @@
         <link href="{{ asset('css/sb-admin-2.min.css') }}"rel="stylesheet">
         <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}"rel="stylesheet">
         <div class="container-fluid">
-
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
@@ -67,7 +66,8 @@
 
         </div>
         <!-- Modal Tambah -->
-        <div class="modal fade text-dark" id="tambah" tabindex="-1" role="dialog" aria-labelledby="tambah" aria-hidden="true">
+        <div class="modal fade text-dark" id="tambah" tabindex="-1" role="dialog" aria-labelledby="tambah"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -113,7 +113,8 @@
         </div>
 
         <!-- Modal Edit -->
-        <div class="modal fade text-dark" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal fade text-dark" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -136,8 +137,8 @@
                                     placeholder="Nama Produk" required>
                             </div>
                             <div class="form-group">
-                                <img id="image_preview" class="image-preview w-25 mb-2" src="" alt="Preview Gambar"
-                                    style="display: none;">
+                                <img id="image_preview" class="image-preview w-25 mb-2" src=""
+                                    alt="Preview Gambar" style="display: none;">
                                 <label for="image">Gambar Produk</label>
                                 <input type="file" name="image" class="form-control-file" id="imageInput"
                                     accept="image/jpg, image/png, image/jpeg">

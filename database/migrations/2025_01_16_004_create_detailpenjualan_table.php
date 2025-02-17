@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('detailpenjualan', function (Blueprint $table) {
             $table->id('id_detail');
             $table->foreignId('id_penjualan')->constrained(
-                table: 'penjualan', column: 'id_penjualan');
-            $table->foreignId('id_produk')->constrained(
-                table: 'produk', column: 'id_produk');
+                table: 'penjualan',
+                column: 'id_penjualan'
+            );
+            $table->foreignId('id_produk')->constrained('produk', 'id_produk')->onDelete('cascade');
             $table->integer('jumlah_produk');
             $table->decimal('subtotal', total: 10, places: 2);
             $table->timestamps();

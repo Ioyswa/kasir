@@ -2,12 +2,21 @@
 
 @section('content')
     <x-dynamic-content class="">
+        @php
+            $i = 0;
+        @endphp
+        @while ($i < 4)
+            <h3>{{$i}}</h3>
+            @php
+                $i++;
+            @endphp
+        @endwhile
         <h1 class="text-center mb-4">Dashboard</h1>
         <div class="row text-center">
             <div class="col-xl-6 col-md-6 mb-4">
                 <div class="card bg-dark shadow h-100 py-2">
                     <div class="card-body">
-                        <h5 class="text-white" >Total Jenis Produk</h5>
+                        <h5 class="text-white">Total Jenis Produk</h5>
                         <h3 class="text-white">{{ $total_produk }}</h3>
                     </div>
                 </div>
@@ -48,9 +57,9 @@
                                         <h6 class="">Ranking Produk Terbanyak</h6>
                                     </div>
                                     <div class="card-body bg-secondary text-white">
-                                        <?php $i = 1 ;?>
+                                        <?php $i = 1; ?>
                                         @foreach ($produks as $produk)
-                                        <ol>{{$i++}} | {{$produk->nama_produk}} = {{$produk->stok}} </ol>
+                                            <ol>{{ $i++ }} | {{ $produk->nama_produk }} = {{ $produk->stok }} </ol>
                                         @endforeach
                                     </div>
                                 </div>

@@ -40,11 +40,11 @@
 
                 @if(Auth::guard('admin')->check())
                     <!-- Menu untuk Admin -->
-                    <a class="collapse-item" href="/Operator">Operator</a>
+                    <a class="collapse-item" href="/operator">Operator</a>
                     <a class="collapse-item" href="/produk">Produk</a>
                     <a class="collapse-item" href="/pelanggan">Pelanggan</a>
                     <a class="collapse-item" href="/penjualan">Penjualan</a>
-                    @elseif(Auth::guard('operator')->check())
+                @elseif(Auth::guard('operator')->check())
                     <!-- Menu untuk Operator -->
                     <a class="collapse-item" href="/produk">Produk</a>
                     <a class="collapse-item" href="/penjualan">Penjualan</a>

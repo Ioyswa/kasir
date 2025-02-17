@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
+use App\Models\DetailPenjualan;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,7 @@ class ProdukController extends Controller
 {
     public function index()
     {
-        $produks = Produk::all();
+        $produks = Produk::latest()->get();
 
         return view('index', [
             'aktivitas' => 'produk',
@@ -94,8 +95,13 @@ class ProdukController extends Controller
     }
 
     public function delete($id_produk) {
+        // Temukan produk berdasarkan ID
         $produk = Produk::findOrFail($id_produk);
 
+        // Hapus semua detail penjualan yang terkait dengan produk ini
+        DetailPenjualan::where('id_produk', $id_produk)->delete();
+
+        // Hapus produk
         $produk->delete();
 
         return redirect()->route('produk')->with('success', 'Produk berhasil dihapus!');

@@ -23,17 +23,17 @@ class PelangganController extends Controller
         // dd($request);
         $request ->validate([
             'nama_pelanggan' => 'required',
-            'alamat' => 'required',
-            'nomor_telepon' => 'required',
+            'alamat_pelanggan' => 'required',
+            'nomor_telepon_pelanggan' => 'required|digits_between:10,15',
         ]);
 
         Pelanggan::create([
             'nama_pelanggan' => $request->nama_pelanggan,
-            'alamat' => $request->alamat,
-            'nomor_telepon' => $request->nomor_telepon,
+            'alamat_pelanggan' => $request->alamat_pelanggan,
+            'nomor_telepon_pelanggan' => $request->nomor_telepon_pelanggan,
         ]);
 
-        return redirect()->route('pelanggan')->with('success', 'Produk berhasil ditambahkan!');
+        return redirect()->route('pelanggan')->with('success', 'Pelanggan berhasil ditambahkan!');
     }
 
     public function update(Request $request) {
@@ -42,8 +42,8 @@ class PelangganController extends Controller
             $request->validate([
                 'id_pelanggan' => 'required|exists:pelanggan,id_pelanggan',
                 'nama_pelanggan' => 'required',
-                'alamat' => 'required',
-                'nomor_telepon' => 'required|',
+                'alamat_pelanggan' => 'required',
+                'nomor_telepon_pelanggan' => 'required|',
             ]);
 
             $id_pelanggan = $request->id_pelanggan;
@@ -51,12 +51,12 @@ class PelangganController extends Controller
             $pelanggan = Pelanggan::findOrFail($id_pelanggan);
 
             $pelanggan->nama_pelanggan = $request->nama_pelanggan;
-            $pelanggan->alamat = $request->alamat;
-            $pelanggan->nomor_telepon = $request->nomor_telepon;
+            $pelanggan->alamat_pelanggan = $request->alamat_pelanggan;
+            $pelanggan->nomor_telepon_pelanggan = $request->nomor_telepon_pelanggan;
 
             $pelanggan->save();
 
-            return redirect()->route('pelanggan')->with('success', 'Produk berhasil diperbarui!');
+            return redirect()->route('pelanggan')->with('success', 'Pelanggan berhasil diperbarui!');
         } catch(Exception $e) {
             dd($e);
 
@@ -69,6 +69,6 @@ class PelangganController extends Controller
 
         $pelanggan->delete();
 
-        return redirect()->route('pelanggan')->with('success', 'Produk berhasil dihapus!');
+        return redirect()->route('pelanggan')->with('success', 'Pelanggan berhasil dihapus!');
     }
 }
