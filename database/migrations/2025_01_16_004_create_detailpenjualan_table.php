@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('id_penjualan')->constrained(
                 table: 'penjualan',
                 column: 'id_penjualan'
-            );
+            )->onDelete('cascade');
             $table->foreignId('id_produk')->constrained('produk', 'id_produk')->onDelete('cascade');
             $table->integer('jumlah_produk');
             $table->decimal('subtotal', total: 10, places: 2);

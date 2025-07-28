@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailPenjualan;
 use Illuminate\Http\Request;
 use App\Models\Pelanggan;
 use Exception;
@@ -66,6 +67,9 @@ class PelangganController extends Controller
 
     public function delete($id_pelanggan) {
         $pelanggan = pelanggan::findOrFail($id_pelanggan);
+
+        // Hapus semua detail penjualan yang terkait dengan produk ini
+        DetailPenjualan::where('id_pelanggan', $id_pelanggan)->delete();
 
         $pelanggan->delete();
 

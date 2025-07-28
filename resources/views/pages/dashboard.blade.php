@@ -2,7 +2,7 @@
 
 @section('content')
     <x-dynamic-content class="">
-        @php
+        {{-- @php
             $i = 0;
         @endphp
         @while ($i < 4)
@@ -10,7 +10,7 @@
             @php
                 $i++;
             @endphp
-        @endwhile
+        @endwhile --}}
         <h1 class="text-center mb-4">Dashboard</h1>
         <div class="row text-center">
             <div class="col-xl-6 col-md-6 mb-4">

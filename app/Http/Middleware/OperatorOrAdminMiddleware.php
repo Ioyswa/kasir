@@ -23,9 +23,9 @@ class OperatorOrAdminMiddleware
 
         if (Auth::check()){
             return redirect()->back()->with('error', 'Anda tidak memiliki akses ke halaman itu.');
+        
+            } else {
+                return redirect()->route('login')->with('error', 'Anda tidak memiliki akses ke halaman itu.');
         }
-            // } else {
-            //     return redirect()->route('login')->with('error', 'Anda tidak memiliki akses ke halaman itu.');
-        // }
     }
 }
